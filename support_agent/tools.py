@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import Dict, Optional
 
 from support_agent.human_interface import HumanAgentInterface
+from support_agent.state_store import StateStore
 
 
 SHIPPING_TERMS = [
@@ -39,30 +40,9 @@ class ToolResult:
 
 
 class SupportToolbox:
-    def __init__(self, human_interface: HumanAgentInterface):
+    def __init__(self, human_interface: HumanAgentInterface, state_store: StateStore):
         self.human_interface = human_interface
-        self.orders = {
-            "ORD-1001": {
-                "user_id": "user-1",
-                "status": "paid",
-                "amount": "HKD 299",
-                "items": "wireless headset",
-            },
-            "ORD-1002": {
-                "user_id": "user-2",
-                "status": "shipped",
-                "amount": "HKD 88",
-                "items": "phone case",
-            },
-        }
-        self.shipments = {
-            "ORD-1002": {
-                "carrier": "SF Express",
-                "tracking_no": "SF123456789HK",
-                "shipping_status": "in_transit",
-                "eta": "2026-06-15",
-            },
-        }
+        self.state_store = state_store
 
     def detect_tool(self, query: str) -> Optional[str]:
         lowered = query.lower()
@@ -76,13 +56,19 @@ class SupportToolbox:
             return "create_ticket"
         return None
 
-    def execute(self, tool_name: str, query: str, user_id: str = "guest") -> ToolResult:
+    def execute(
+        self,
+        tool_name: str,
+        query: str,
+        user_id: str = "guest",
+        session_id: Optional[str] = None,
+    ) -> ToolResult:
         if tool_name == "lookup_order":
             return self.lookup_order(query, user_id)
         if tool_name == "lookup_shipping":
             return self.lookup_shipping(query, user_id)
         if tool_name == "create_ticket":
-            return self.create_ticket(query, user_id)
+            return self.create_ticket(query, user_id, session_id=session_id)
         return ToolResult(
             tool_name=tool_name,
             success=False,
@@ -100,7 +86,7 @@ class SupportToolbox:
                 {},
             )
 
-        order = self.orders.get(order_id)
+        order = self.state_store.get_order(order_id)
         if not order:
             return ToolResult(
                 "lookup_order",
@@ -109,7 +95,15 @@ class SupportToolbox:
                 {"order_id": order_id},
             )
 
-        if user_id != "guest" and order["user_id"] != user_id:
+        if user_id == "guest":
+            return ToolResult(
+                "lookup_order",
+                False,
+                "Please sign in before querying a specific order.",
+                {"order_id": order_id},
+            )
+
+        if order["user_id"] != user_id:
             return ToolResult(
                 "lookup_order",
                 False,
@@ -136,7 +130,7 @@ class SupportToolbox:
             )
 
         order_id = order_result.payload["order_id"]
-        shipment = self.shipments.get(order_id)
+        shipment = self.state_store.get_shipment(order_id)
         if not shipment:
             return ToolResult(
                 "lookup_shipping",
@@ -154,13 +148,27 @@ class SupportToolbox:
             {"order_id": order_id, **shipment},
         )
 
-    def create_ticket(self, query: str, user_id: str) -> ToolResult:
-        ticket_id = self.human_interface.create_ticket(user_id=user_id, initial_message=query)
+    def create_ticket(
+        self,
+        query: str,
+        user_id: str,
+        session_id: Optional[str] = None,
+    ) -> ToolResult:
+        ticket_id = self.human_interface.create_ticket(
+            user_id=user_id,
+            initial_message=query,
+            session_id=session_id,
+        )
         return ToolResult(
             "create_ticket",
             True,
             f"Ticket {ticket_id} has been created and handed to human support.",
-            {"ticket_id": str(ticket_id), "user_id": user_id, "status": "open"},
+            {
+                "ticket_id": str(ticket_id),
+                "user_id": user_id,
+                "session_id": session_id or "",
+                "status": "open",
+            },
         )
 
     def _extract_order_id(self, query: str) -> Optional[str]:

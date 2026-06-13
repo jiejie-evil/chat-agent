@@ -8,7 +8,10 @@ from openai import OpenAI
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from support_agent.guardrails import Guardrails
 from support_agent.human_interface import HumanAgentInterface
+from support_agent.observability import Observability
+from support_agent.state_store import StateStore
 from support_agent.tools import SupportToolbox, ToolResult
 
 
@@ -36,11 +39,17 @@ class AnswerResult:
     confidence: float
     escalated: bool
     tool_name: Optional[str] = None
+    session_id: Optional[str] = None
+    trace_id: Optional[str] = None
+    guardrail_reason: Optional[str] = None
 
 
 class AgentState(TypedDict, total=False):
     query: str
     user_id: str
+    session_id: str
+    trace_id: str
+    guardrail_reason: Optional[str]
     retrieved: List[RetrievedChunk]
     context: str
     confidence: float
@@ -60,6 +69,7 @@ class SupportAgent:
         chunk_overlap: int = 40,
         top_k: int = 3,
         min_score: float = 0.12,
+        state_store: Optional[StateStore] = None,
         human_interface: Optional[HumanAgentInterface] = None,
     ):
         self.chunk_size = chunk_size
@@ -70,8 +80,11 @@ class SupportAgent:
         self.vectorizer: Optional[TfidfVectorizer] = None
         self.chunk_matrix = None
         self.openai_client: Optional[OpenAI] = None
-        self.human_interface = human_interface or HumanAgentInterface()
-        self.toolbox = SupportToolbox(self.human_interface)
+        self.state_store = state_store or StateStore()
+        self.human_interface = human_interface or HumanAgentInterface(self.state_store)
+        self.toolbox = SupportToolbox(self.human_interface, self.state_store)
+        self.guardrails = Guardrails()
+        self.observability = Observability(self.state_store)
         self.graph = self._build_graph()
 
         api_key = os.getenv("OPENAI_API_KEY")
@@ -136,17 +149,53 @@ class SupportAgent:
             )
         return results
 
-    def answer(self, query: str, user_id: str = "guest") -> str:
-        return self.answer_with_metadata(query, user_id=user_id).answer
+    def answer(
+        self,
+        query: str,
+        user_id: str = "guest",
+        session_id: Optional[str] = None,
+    ) -> str:
+        return self.answer_with_metadata(query, user_id=user_id, session_id=session_id).answer
 
-    def answer_with_metadata(self, query: str, user_id: str = "guest") -> AnswerResult:
-        result = self.graph.invoke({"query": query, "user_id": user_id})
+    def answer_with_metadata(
+        self,
+        query: str,
+        user_id: str = "guest",
+        session_id: Optional[str] = None,
+    ) -> AnswerResult:
+        session = self.state_store.ensure_session(user_id=user_id, session_id=session_id)
+        self.state_store.append_session_message(session["session_id"], "user", query)
+        trace = self.observability.start_trace(
+            user_id=user_id,
+            session_id=session["session_id"],
+            query=query,
+        )
+        result = self.graph.invoke(
+            {
+                "query": query,
+                "user_id": user_id,
+                "session_id": session["session_id"],
+                "trace_id": trace.trace_id,
+            }
+        )
+        self.state_store.append_session_message(session["session_id"], "assistant", result["answer"])
+        self.observability.finish_trace(
+            trace=trace,
+            answer=result["answer"],
+            confidence=result["confidence"],
+            escalated=result["escalated"],
+            tool_name=result.get("tool_name"),
+            guardrail_reason=result.get("guardrail_reason"),
+        )
         return AnswerResult(
             answer=result["answer"],
             sources=result["sources"],
             confidence=result["confidence"],
             escalated=result["escalated"],
             tool_name=result.get("tool_name"),
+            session_id=session["session_id"],
+            trace_id=trace.trace_id,
+            guardrail_reason=result.get("guardrail_reason"),
         )
 
     def is_ready(self) -> bool:
@@ -165,12 +214,18 @@ class SupportAgent:
 
     def _build_graph(self):
         graph = StateGraph(AgentState)
+        graph.add_node("guardrails", self._guardrails_node)
         graph.add_node("route", self._route_node)
         graph.add_node("tool", self._tool_node)
         graph.add_node("retrieve", self._retrieve_node)
         graph.add_node("assess", self._assess_node)
         graph.add_node("generate", self._generate_node)
-        graph.add_edge(START, "route")
+        graph.add_edge(START, "guardrails")
+        graph.add_conditional_edges(
+            "guardrails",
+            self._after_guardrails,
+            {"blocked": END, "route": "route"},
+        )
         graph.add_conditional_edges(
             "route",
             self._after_route,
@@ -182,8 +237,37 @@ class SupportAgent:
         graph.add_edge("generate", END)
         return graph.compile()
 
+    def _guardrails_node(self, state: AgentState) -> AgentState:
+        decision = self.guardrails.inspect_query(state["query"])
+        self.observability.log_event(
+            state["trace_id"],
+            "guardrails_checked",
+            {
+                "action": decision.action,
+                "reason": decision.reason,
+            },
+        )
+        if decision.action == "block":
+            return {
+                "answer": decision.message or "Request blocked.",
+                "sources": ["guardrails"],
+                "confidence": 1.0,
+                "escalated": True,
+                "tool_name": None,
+                "guardrail_reason": decision.reason,
+            }
+        return {"guardrail_reason": None}
+
+    def _after_guardrails(self, state: AgentState) -> str:
+        return "blocked" if state.get("guardrail_reason") == "sensitive_content" else "route"
+
     def _route_node(self, state: AgentState) -> AgentState:
         tool_name = self.toolbox.detect_tool(state["query"])
+        self.observability.log_event(
+            state["trace_id"],
+            "route_selected",
+            {"tool_name": tool_name or "", "path": "tool" if tool_name else "retrieve"},
+        )
         return {"tool_name": tool_name}
 
     def _after_route(self, state: AgentState) -> str:
@@ -192,6 +276,7 @@ class SupportAgent:
     def _tool_node(self, state: AgentState) -> AgentState:
         tool_name = state.get("tool_name")
         user_id = state.get("user_id", "guest")
+        session_id = state.get("session_id")
         if not tool_name:
             return {
                 "answer": "No tool selected.",
@@ -201,8 +286,31 @@ class SupportAgent:
                 "tool_name": None,
             }
 
-        tool_result = self.toolbox.execute(tool_name, state["query"], user_id=user_id)
+        tool_result = self.toolbox.execute(
+            tool_name,
+            state["query"],
+            user_id=user_id,
+            session_id=session_id,
+        )
         escalated = tool_name == "create_ticket"
+        guardrail_reason = None
+        if not tool_result.success:
+            decision = self.guardrails.evaluate_tool_result(
+                success=tool_result.success,
+                message=tool_result.message,
+            )
+            if decision.reason:
+                guardrail_reason = decision.reason
+                escalated = decision.action == "escalate"
+        self.observability.log_event(
+            state["trace_id"],
+            "tool_executed",
+            {
+                "tool_name": tool_name,
+                "success": tool_result.success,
+                "guardrail_reason": guardrail_reason,
+            },
+        )
         return {
             "tool_result": tool_result,
             "answer": tool_result.message,
@@ -210,6 +318,7 @@ class SupportAgent:
             "confidence": 1.0 if tool_result.success else 0.0,
             "escalated": escalated,
             "tool_name": tool_name,
+            "guardrail_reason": guardrail_reason,
         }
 
     def _retrieve_node(self, state: AgentState) -> AgentState:
@@ -218,6 +327,15 @@ class SupportAgent:
         context = self.build_context(retrieved) if retrieved else ""
         sources = [f"{item.source}#{item.chunk_id}" for item in retrieved]
         confidence = retrieved[0].score if retrieved else 0.0
+        self.observability.log_event(
+            state["trace_id"],
+            "retrieval_completed",
+            {
+                "retrieved_count": len(retrieved),
+                "confidence": confidence,
+                "sources": sources,
+            },
+        )
         return {
             "retrieved": retrieved,
             "context": context,
@@ -227,8 +345,19 @@ class SupportAgent:
 
     def _assess_node(self, state: AgentState) -> AgentState:
         confidence = state.get("confidence", 0.0)
-        escalated = confidence < self.min_score
-        return {"escalated": escalated}
+        decision = self.guardrails.evaluate_retrieval_confidence(confidence, self.min_score)
+        escalated = decision.action == "escalate"
+        self.observability.log_event(
+            state["trace_id"],
+            "retrieval_assessed",
+            {
+                "confidence": confidence,
+                "threshold": self.min_score,
+                "escalated": escalated,
+                "reason": decision.reason,
+            },
+        )
+        return {"escalated": escalated, "guardrail_reason": decision.reason}
 
     def _generate_node(self, state: AgentState) -> AgentState:
         query = state["query"]
@@ -236,17 +365,32 @@ class SupportAgent:
         confidence = state.get("confidence", 0.0)
         sources = state.get("sources", [])
         escalated = state.get("escalated", False)
+        guardrail_reason = state.get("guardrail_reason")
 
         if escalated or not retrieved:
+            self.observability.log_event(
+                state["trace_id"],
+                "answer_escalated",
+                {
+                    "reason": guardrail_reason or "no_retrieval",
+                    "confidence": confidence,
+                },
+            )
             return {
                 "answer": (
                     "I could not find enough grounded knowledge for this question. "
                     "Please hand the conversation to a human agent."
+                    if guardrail_reason != "low_confidence"
+                    else self.guardrails.evaluate_retrieval_confidence(
+                        confidence,
+                        self.min_score,
+                    ).message
                 ),
                 "sources": sources,
                 "confidence": confidence,
                 "escalated": True,
                 "tool_name": None,
+                "guardrail_reason": guardrail_reason,
             }
 
         context = state["context"]
@@ -254,6 +398,15 @@ class SupportAgent:
             answer = self._generate_with_openai(query, context)
         else:
             answer = self._generate_fallback_answer(retrieved)
+        self.observability.log_event(
+            state["trace_id"],
+            "answer_generated",
+            {
+                "escalated": False,
+                "used_openai": self.openai_client is not None,
+                "source_count": len(sources),
+            },
+        )
 
         return {
             "answer": answer,
@@ -261,6 +414,7 @@ class SupportAgent:
             "confidence": confidence,
             "escalated": False,
             "tool_name": None,
+            "guardrail_reason": None,
         }
 
     def _generate_with_openai(self, query: str, context: str) -> str:

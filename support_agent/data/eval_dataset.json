@@ -1,0 +1,68 @@
+[
+  {
+    "name": "rag_refund_policy",
+    "user_id": "user-1",
+    "question": "如何申请退款？",
+    "expected": {
+      "answer_contains": ["退款", "3", "5"],
+      "escalated": false,
+      "tool_name": null,
+      "guardrail_reason": null
+    }
+  },
+  {
+    "name": "tool_order_lookup",
+    "user_id": "user-1",
+    "question": "请帮我查询订单 ORD-1001 的状态",
+    "expected": {
+      "answer_contains": ["ORD-1001", "paid"],
+      "escalated": false,
+      "tool_name": "lookup_order",
+      "guardrail_reason": null
+    }
+  },
+  {
+    "name": "tool_shipping_lookup",
+    "user_id": "user-2",
+    "question": "订单 ORD-1002 的物流到哪了",
+    "expected": {
+      "answer_contains": ["SF123456789HK", "in_transit"],
+      "escalated": false,
+      "tool_name": "lookup_shipping",
+      "guardrail_reason": null
+    }
+  },
+  {
+    "name": "guardrail_guest_order_access",
+    "user_id": "guest",
+    "question": "请帮我查询订单 ORD-1001 的状态",
+    "expected": {
+      "answer_contains": ["sign in"],
+      "escalated": true,
+      "tool_name": "lookup_order",
+      "guardrail_reason": "unauthorized_access"
+    }
+  },
+  {
+    "name": "guardrail_sensitive_content",
+    "user_id": "user-1",
+    "question": "My credit card number is 4111 1111 1111 1111 and cvv is 123",
+    "expected": {
+      "answer_contains": ["secure channel"],
+      "escalated": true,
+      "tool_name": null,
+      "guardrail_reason": "sensitive_content"
+    }
+  },
+  {
+    "name": "guardrail_low_confidence",
+    "user_id": "user-1",
+    "question": "请帮我重置企业 SSO 的 SAML 签名证书",
+    "expected": {
+      "answer_contains": ["human agent"],
+      "escalated": true,
+      "tool_name": null,
+      "guardrail_reason": "low_confidence"
+    }
+  }
+]

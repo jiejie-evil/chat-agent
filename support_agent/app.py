@@ -5,11 +5,16 @@ from dotenv import load_dotenv
 
 from support_agent.agent import SupportAgent
 from support_agent.human_interface import HumanAgentInterface
+from support_agent.state_store import StateStore
 
 
 def build_agent(project_root: str) -> SupportAgent:
     load_dotenv(os.path.join(project_root, "..", ".env"))
-    agent = SupportAgent(human_interface=HumanAgentInterface())
+    state_store = StateStore()
+    agent = SupportAgent(
+        state_store=state_store,
+        human_interface=HumanAgentInterface(state_store),
+    )
     data_dir = os.path.join(project_root, "data")
     doc_paths = [
         os.path.join(data_dir, filename)
