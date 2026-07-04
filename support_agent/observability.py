@@ -4,6 +4,8 @@ import uuid
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
+from support_agent.resilience import log_event
+
 
 @dataclass
 class TraceContext:
@@ -48,10 +50,18 @@ class Observability:
         event_type: str,
         payload: Optional[Dict[str, Any]] = None,
     ) -> None:
+        event_payload = payload or {}
         self.state_store.append_trace_event(
             trace_id=trace_id,
             event_type=event_type,
-            payload=json.dumps(payload or {}, ensure_ascii=True),
+            payload=json.dumps(event_payload, ensure_ascii=True),
+        )
+        log_event(
+            {
+                "trace_id": trace_id,
+                "event_type": event_type,
+                **event_payload,
+            }
         )
 
     def finish_trace(
@@ -62,6 +72,7 @@ class Observability:
         escalated: bool,
         tool_name: Optional[str],
         guardrail_reason: Optional[str],
+        failure_reason: Optional[str] = None,
     ) -> None:
         duration_ms = int((time.time() - trace.started_at) * 1000)
         self.log_event(
@@ -72,6 +83,7 @@ class Observability:
                 "escalated": escalated,
                 "tool_name": tool_name,
                 "guardrail_reason": guardrail_reason,
+                "failure_reason": failure_reason,
                 "duration_ms": duration_ms,
             },
         )
@@ -82,5 +94,6 @@ class Observability:
             escalated=escalated,
             tool_name=tool_name,
             guardrail_reason=guardrail_reason,
+            failure_reason=failure_reason,
             duration_ms=duration_ms,
         )

@@ -101,6 +101,7 @@ class StateStore:
                     escalated INTEGER DEFAULT 0,
                     tool_name TEXT,
                     guardrail_reason TEXT,
+                    failure_reason TEXT,
                     duration_ms INTEGER,
                     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                     finished_at TEXT,
@@ -118,7 +119,22 @@ class StateStore:
                 );
                 """
             )
+            self._ensure_column(connection, "traces", "failure_reason", "TEXT")
         self.ensure_seed_data()
+
+    def _ensure_column(
+        self,
+        connection: sqlite3.Connection,
+        table_name: str,
+        column_name: str,
+        column_type: str,
+    ) -> None:
+        rows = connection.execute(f"PRAGMA table_info({table_name})").fetchall()
+        existing_columns = {row["name"] for row in rows}
+        if column_name not in existing_columns:
+            connection.execute(
+                f"ALTER TABLE {table_name} ADD COLUMN {column_name} {column_type}"
+            )
 
     def ensure_user(
         self,
@@ -274,6 +290,7 @@ class StateStore:
         escalated: bool,
         tool_name: Optional[str],
         guardrail_reason: Optional[str],
+        failure_reason: Optional[str],
         duration_ms: int,
     ) -> None:
         with self._connect() as connection:
@@ -285,6 +302,7 @@ class StateStore:
                     escalated = ?,
                     tool_name = ?,
                     guardrail_reason = ?,
+                    failure_reason = ?,
                     duration_ms = ?,
                     finished_at = CURRENT_TIMESTAMP
                 WHERE trace_id = ?
@@ -295,6 +313,7 @@ class StateStore:
                     1 if escalated else 0,
                     tool_name,
                     guardrail_reason,
+                    failure_reason,
                     duration_ms,
                     trace_id,
                 ),

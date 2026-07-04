@@ -1,16 +1,15 @@
 import argparse
 import os
 
-from dotenv import load_dotenv
-
 from support_agent.agent import SupportAgent
+from support_agent.config import get_settings
 from support_agent.human_interface import HumanAgentInterface
 from support_agent.state_store import StateStore
 
 
 def build_agent(project_root: str) -> SupportAgent:
-    load_dotenv(os.path.join(project_root, "..", ".env"))
-    state_store = StateStore()
+    settings = get_settings()
+    state_store = StateStore(db_path=settings.database_path)
     agent = SupportAgent(
         state_store=state_store,
         human_interface=HumanAgentInterface(state_store),

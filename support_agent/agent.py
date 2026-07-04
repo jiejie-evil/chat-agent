@@ -5,12 +5,13 @@ from typing import List, Optional, TypedDict
 
 from langgraph.graph import END, START, StateGraph
 from openai import OpenAI
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 
+from support_agent.config import get_settings
+from support_agent.errors import ServiceError, UpstreamUnavailableError
 from support_agent.guardrails import Guardrails
 from support_agent.human_interface import HumanAgentInterface
 from support_agent.observability import Observability
+from support_agent.resilience import run_with_retries, run_with_timeout
 from support_agent.state_store import StateStore
 from support_agent.tools import SupportToolbox, ToolResult
 
@@ -42,6 +43,7 @@ class AnswerResult:
     session_id: Optional[str] = None
     trace_id: Optional[str] = None
     guardrail_reason: Optional[str] = None
+    failure_reason: Optional[str] = None
 
 
 class AgentState(TypedDict, total=False):
@@ -72,13 +74,14 @@ class SupportAgent:
         state_store: Optional[StateStore] = None,
         human_interface: Optional[HumanAgentInterface] = None,
     ):
+        self.settings = get_settings()
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         self.top_k = top_k
         self.min_score = min_score
         self.chunks: List[RetrievedChunk] = []
-        self.vectorizer: Optional[TfidfVectorizer] = None
-        self.chunk_matrix = None
+        self._embedder = None
+        self._collection = None
         self.openai_client: Optional[OpenAI] = None
         self.state_store = state_store or StateStore()
         self.human_interface = human_interface or HumanAgentInterface(self.state_store)
@@ -91,8 +94,29 @@ class SupportAgent:
         if api_key:
             self.openai_client = OpenAI(api_key=api_key)
 
+    def _ensure_embedder(self):
+        if self._embedder is None:
+            from sentence_transformers import SentenceTransformer
+
+            self._embedder = SentenceTransformer(self.settings.embedding_model)
+        return self._embedder
+
     def ingest(self, doc_paths: List[str]) -> None:
+        import chromadb
+
+        embedder = self._ensure_embedder()
+        client = chromadb.PersistentClient(path=self.settings.chroma_persist_dir)
+        try:
+            client.delete_collection("knowledge")
+        except Exception:
+            pass
+        self._collection = client.create_collection(
+            "knowledge", metadata={"hnsw:space": "cosine"}
+        )
+
         chunk_texts: List[str] = []
+        ids: List[str] = []
+        metadatas: List[dict] = []
         self.chunks = []
 
         for path in doc_paths:
@@ -103,51 +127,60 @@ class SupportAgent:
                 cleaned = self._normalize_text(chunk)
                 if not cleaned:
                     continue
+                source = os.path.basename(path)
+                uid = f"{source}::{chunk_id}"
+                chunk_texts.append(cleaned)
+                ids.append(uid)
+                metadatas.append({"source": source, "chunk_id": chunk_id})
                 self.chunks.append(
                     RetrievedChunk(
                         content=cleaned,
-                        source=os.path.basename(path),
+                        source=source,
                         chunk_id=chunk_id,
                         score=0.0,
                     )
                 )
-                chunk_texts.append(cleaned)
 
         if not chunk_texts:
             raise ValueError("No valid documents were ingested.")
 
-        self.vectorizer = TfidfVectorizer(
-            analyzer="char_wb",
-            ngram_range=(2, 4),
-            lowercase=False,
+        embeddings = embedder.encode(chunk_texts).tolist()
+        self._collection.add(
+            documents=chunk_texts,
+            embeddings=embeddings,
+            ids=ids,
+            metadatas=metadatas,
         )
-        self.chunk_matrix = self.vectorizer.fit_transform(chunk_texts)
 
     def retrieve(self, query: str, k: Optional[int] = None) -> List[RetrievedChunk]:
-        if not self.vectorizer or self.chunk_matrix is None:
+        if self._collection is None or self._embedder is None:
             raise RuntimeError("Please ingest documents before querying the agent.")
 
         top_k = k or self.top_k
-        normalized_query = self._normalize_text(query)
-        query_vector = self.vectorizer.transform([normalized_query])
-        similarities = cosine_similarity(query_vector, self.chunk_matrix).flatten()
-        top_indices = similarities.argsort()[::-1][:top_k]
+        query_embedding = self._embedder.encode([query]).tolist()
+        results = self._collection.query(
+            query_embeddings=query_embedding,
+            n_results=min(top_k, self._collection.count()),
+        )
 
-        results: List[RetrievedChunk] = []
-        for index in top_indices:
-            score = float(similarities[index])
+        documents = results["documents"][0]
+        metadatas = results["metadatas"][0]
+        distances = results["distances"][0]
+
+        chunks: List[RetrievedChunk] = []
+        for document, metadata, distance in zip(documents, metadatas, distances):
+            score = 1.0 - float(distance)
             if score <= 0:
                 continue
-            chunk = self.chunks[index]
-            results.append(
+            chunks.append(
                 RetrievedChunk(
-                    content=chunk.content,
-                    source=chunk.source,
-                    chunk_id=chunk.chunk_id,
+                    content=document,
+                    source=metadata["source"],
+                    chunk_id=int(metadata["chunk_id"]),
                     score=score,
                 )
             )
-        return results
+        return chunks
 
     def answer(
         self,
@@ -170,14 +203,47 @@ class SupportAgent:
             session_id=session["session_id"],
             query=query,
         )
-        result = self.graph.invoke(
-            {
-                "query": query,
-                "user_id": user_id,
-                "session_id": session["session_id"],
-                "trace_id": trace.trace_id,
-            }
-        )
+        try:
+            result = run_with_timeout(
+                lambda: self.graph.invoke(
+                    {
+                        "query": query,
+                        "user_id": user_id,
+                        "session_id": session["session_id"],
+                        "trace_id": trace.trace_id,
+                    }
+                ),
+                timeout_seconds=self.settings.support_agent_request_timeout_seconds,
+            )
+        except ServiceError as exc:
+            if exc.error_code == "request_timeout":
+                self.observability.log_event(
+                    trace.trace_id,
+                    "request_timed_out",
+                    {"timeout_seconds": self.settings.support_agent_request_timeout_seconds},
+                )
+            self.observability.finish_trace(
+                trace=trace,
+                answer="",
+                confidence=0.0,
+                escalated=True,
+                tool_name=None,
+                guardrail_reason=None,
+                failure_reason=exc.error_code,
+            )
+            raise
+        except Exception:
+            self.observability.finish_trace(
+                trace=trace,
+                answer="",
+                confidence=0.0,
+                escalated=True,
+                tool_name=None,
+                guardrail_reason=None,
+                failure_reason="unexpected_error",
+            )
+            raise
+
         self.state_store.append_session_message(session["session_id"], "assistant", result["answer"])
         self.observability.finish_trace(
             trace=trace,
@@ -186,6 +252,7 @@ class SupportAgent:
             escalated=result["escalated"],
             tool_name=result.get("tool_name"),
             guardrail_reason=result.get("guardrail_reason"),
+            failure_reason=None,
         )
         return AnswerResult(
             answer=result["answer"],
@@ -196,10 +263,107 @@ class SupportAgent:
             session_id=session["session_id"],
             trace_id=trace.trace_id,
             guardrail_reason=result.get("guardrail_reason"),
+            failure_reason=None,
         )
 
+    def stream_answer(
+        self,
+        query: str,
+        user_id: str = "guest",
+        session_id: Optional[str] = None,
+    ):
+        """Yield answer tokens incrementally. Bypasses the graph for SSE compatibility."""
+        session = self.state_store.ensure_session(user_id=user_id, session_id=session_id)
+        self.state_store.append_session_message(session["session_id"], "user", query)
+        trace = self.observability.start_trace(
+            user_id=user_id,
+            session_id=session["session_id"],
+            query=query,
+        )
+
+        collected: List[str] = []
+
+        def emit(text: str):
+            collected.append(text)
+            return text
+
+        escalated = False
+        tool_name: Optional[str] = None
+        guardrail_reason: Optional[str] = None
+        confidence = 1.0
+
+        try:
+            decision = self.guardrails.inspect_query(query)
+            if decision.action == "block":
+                guardrail_reason = decision.reason
+                escalated = True
+                yield emit(decision.message or "Request blocked.")
+                return
+
+            tool_name = self.toolbox.detect_tool(query)
+            if tool_name:
+                tool_result = self.toolbox.execute(
+                    tool_name, query, user_id=user_id, session_id=session["session_id"]
+                )
+                escalated = tool_name == "create_ticket" or not tool_result.success
+                confidence = 1.0 if tool_result.success else 0.0
+                yield emit(tool_result.message)
+                return
+
+            retrieved = self.retrieve(query)
+            confidence = retrieved[0].score if retrieved else 0.0
+            assessment = self.guardrails.evaluate_retrieval_confidence(confidence, self.min_score)
+            if assessment.action == "escalate" or not retrieved:
+                escalated = True
+                guardrail_reason = assessment.reason
+                yield emit(
+                    assessment.message
+                    or (
+                        "I could not find enough grounded knowledge for this question. "
+                        "Please hand the conversation to a human agent."
+                    )
+                )
+                return
+
+            context = self.build_context(retrieved)
+            if self.openai_client:
+                for token in self._stream_with_openai(query, context, trace.trace_id):
+                    yield emit(token)
+            else:
+                yield emit(self._generate_fallback_answer(retrieved))
+        finally:
+            answer = "".join(collected)
+            self.state_store.append_session_message(session["session_id"], "assistant", answer)
+            self.observability.finish_trace(
+                trace=trace,
+                answer=answer,
+                confidence=confidence,
+                escalated=escalated,
+                tool_name=tool_name,
+                guardrail_reason=guardrail_reason,
+                failure_reason=None,
+            )
+
+    def _stream_with_openai(self, query: str, context: str, trace_id: str):
+        with self.openai_client.responses.stream(
+            model=self.settings.openai_model,
+            input=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": (
+                        f"Retrieved knowledge:\n{context}\n\n"
+                        f"Customer question:\n{query}"
+                    ),
+                },
+            ],
+        ) as stream:
+            for event in stream:
+                if event.type == "response.output_text.delta":
+                    yield event.delta
+
     def is_ready(self) -> bool:
-        return self.vectorizer is not None and self.chunk_matrix is not None
+        return self._collection is not None and self._embedder is not None
 
     def build_context(self, retrieved: List[RetrievedChunk]) -> str:
         return "\n\n".join(
@@ -395,7 +559,7 @@ class SupportAgent:
 
         context = state["context"]
         if self.openai_client:
-            answer = self._generate_with_openai(query, context)
+            answer = self._generate_with_openai(query, context, state["trace_id"])
         else:
             answer = self._generate_fallback_answer(retrieved)
         self.observability.log_event(
@@ -417,21 +581,51 @@ class SupportAgent:
             "guardrail_reason": None,
         }
 
-    def _generate_with_openai(self, query: str, context: str) -> str:
-        response = self.openai_client.responses.create(
-            model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
-            input=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {
-                    "role": "user",
-                    "content": (
-                        f"Retrieved knowledge:\n{context}\n\n"
-                        f"Customer question:\n{query}"
-                    ),
-                },
-            ],
-        )
-        return response.output_text.strip()
+    def _generate_with_openai(self, query: str, context: str, trace_id: str) -> str:
+        def invoke_once() -> str:
+            def do_call() -> str:
+                response = self.openai_client.responses.create(
+                    model=self.settings.openai_model,
+                    input=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {
+                            "role": "user",
+                            "content": (
+                                f"Retrieved knowledge:\n{context}\n\n"
+                                f"Customer question:\n{query}"
+                            ),
+                        },
+                    ],
+                )
+                return response.output_text.strip()
+
+            return run_with_timeout(
+                do_call,
+                timeout_seconds=self.settings.support_agent_openai_timeout_seconds,
+            )
+
+        try:
+            return run_with_retries(
+                invoke_once,
+                max_retries=self.settings.support_agent_openai_max_retries,
+                on_retry=lambda attempt, delay: self.observability.log_event(
+                    trace_id,
+                    "openai_retry_scheduled",
+                    {"attempt": attempt, "delay_seconds": round(delay, 3)},
+                ),
+                on_exhausted=lambda: self.observability.log_event(
+                    trace_id,
+                    "openai_retry_exhausted",
+                    {"max_retries": self.settings.support_agent_openai_max_retries},
+                ),
+            )
+        except UpstreamUnavailableError:
+            self.observability.log_event(
+                trace_id,
+                "upstream_generation_failed",
+                {"failure_reason": "generation_failed"},
+            )
+            raise
 
     def _generate_fallback_answer(self, retrieved: List[RetrievedChunk]) -> str:
         top_items = retrieved[:2]
