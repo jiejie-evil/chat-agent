@@ -133,3 +133,19 @@ def test_get_ticket_not_found_returns_404(client):
     test_client, _ = client
     response = test_client.get("/tickets/999999", headers=_headers())
     assert response.status_code == 404
+
+
+def test_invalid_ticket_status_returns_422(client):
+    test_client, _ = client
+    response = test_client.patch(
+        "/tickets/999999",
+        json={"status": "invalid"},
+        headers=_headers(),
+    )
+    assert response.status_code == 400
+
+
+def test_trace_limit_is_validated(client):
+    test_client, _ = client
+    response = test_client.get("/traces?limit=0", headers=_headers())
+    assert response.status_code == 400

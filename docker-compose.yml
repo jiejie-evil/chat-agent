@@ -11,6 +11,7 @@ services:
       APP_HOST: 0.0.0.0
       APP_PORT: 8000
       SUPPORT_AGENT_DB_PATH: /app/runtime/support_agent.db
+      CHROMA_PERSIST_DIR: /app/runtime/chroma
     ports:
       - "8000:8000"
     volumes:

@@ -11,12 +11,12 @@ class ToolResult:
     message: str
 
 
-_ASCII_ORDER = {"order", "purchase", "buy", "bought", "paid"}
-_ASCII_SHIPMENT = {"ship", "track", "delivery", "tracking", "shipment"}
-_ASCII_TICKET = {"help", "agent", "human", "complaint"}
+_ASCII_ORDER = {"order", "orders", "purchase", "purchases", "buy", "bought", "paid", "status"}
+_ASCII_SHIPMENT = {"ship", "ships", "shipped", "track", "tracking", "delivery", "deliveries", "shipment", "shipments", "package", "parcel"}
+_ASCII_TICKET = {"help", "agent", "human", "complaint", "complaints", "refund", "refunds", "support", "客服"}
 _CJK_ORDER = ("订单",)
 _CJK_SHIPMENT = ("物流", "快递", "运输")
-_CJK_TICKET = ("人工", "客服", "投诉")
+_CJK_TICKET = ("人工", "客服", "投诉", "退款")
 _ORDER_ID_RE = re.compile(r"(ORD-\d+)", re.IGNORECASE)
 
 
@@ -48,14 +48,14 @@ class SupportToolbox:
         session_id: Optional[str] = None,
     ) -> ToolResult:
         if tool_name == "check_order":
-            return self._check_order(query)
+            return self._check_order(query, user_id)
         if tool_name == "check_shipment":
-            return self._check_shipment(query)
+            return self._check_shipment(query, user_id)
         if tool_name == "create_ticket":
             return self._create_ticket(user_id, query, session_id)
         return ToolResult(success=False, message=f"Unknown tool: {tool_name}")
 
-    def _check_order(self, query: str) -> ToolResult:
+    def _check_order(self, query: str, user_id: str) -> ToolResult:
         match = _ORDER_ID_RE.search(query)
         if not match:
             return ToolResult(success=False, message="No order ID found in your message.")
@@ -63,6 +63,10 @@ class SupportToolbox:
         order = self.state_store.get_order(order_id)
         if not order:
             return ToolResult(success=False, message=f"Order {order_id} not found.")
+        if user_id == "guest":
+            return ToolResult(success=False, message="Please sign in before accessing order data.")
+        if order["user_id"] != user_id:
+            return ToolResult(success=False, message="This order does not belong to the signed-in user.")
         return ToolResult(
             success=True,
             message=(
@@ -71,7 +75,7 @@ class SupportToolbox:
             ),
         )
 
-    def _check_shipment(self, query: str) -> ToolResult:
+    def _check_shipment(self, query: str, user_id: str) -> ToolResult:
         match = _ORDER_ID_RE.search(query)
         if not match:
             return ToolResult(success=False, message="No order ID found in your message.")
@@ -79,6 +83,11 @@ class SupportToolbox:
         shipment = self.state_store.get_shipment(order_id)
         if not shipment:
             return ToolResult(success=False, message=f"No shipment found for order {order_id}.")
+        order = self.state_store.get_order(order_id)
+        if user_id == "guest":
+            return ToolResult(success=False, message="Please sign in before accessing shipment data.")
+        if not order or order["user_id"] != user_id:
+            return ToolResult(success=False, message="This shipment does not belong to the signed-in user.")
         return ToolResult(
             success=True,
             message=(

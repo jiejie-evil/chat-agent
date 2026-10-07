@@ -52,7 +52,6 @@ Key files:
 RAG knowledge and support seed data live here:
 
 - [rag_knowledge_base.md](/D:/code/langchain-support-agent/support_agent/data/rag_knowledge_base.md)
-- [orders_seed.md](/D:/code/langchain-support-agent/support_agent/data/orders_seed.md)
 - [eval_dataset.json](/D:/code/langchain-support-agent/support_agent/data/eval_dataset.json)
 
 ## Local run
@@ -140,9 +139,9 @@ Example response:
 {
   "answer": "Order ORD-1001 is currently paid. Items: wireless headset. Amount: HKD 299.",
   "escalated": false,
-  "sources": ["lookup_order"],
+  "sources": ["check_order"],
   "confidence": 1.0,
-  "tool_name": "lookup_order",
+  "tool_name": "check_order",
   "session_id": "session-001",
   "trace_id": "trace-xxxx",
   "guardrail_reason": null
@@ -162,6 +161,11 @@ Run offline eval:
 ```powershell
 python -m support_agent.eval_runner
 ```
+
+The evaluator reports dialogue pass rate, retrieval recall, average/p95 latency,
+fallback latency, and false-escalation rate. It exits non-zero when the PRD
+targets are not met (87% dialogue pass rate, 91% retrieval recall, 2.5s average
+latency, 500ms fallback latency, and 8% false escalation rate).
 
 ## Resume-ready highlights
 

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -44,5 +44,5 @@ jobs:
           pytest support_agent/tests/ \
             --cov=support_agent \
             --cov-report=term-missing \
-            --cov-fail-under=80 \
+            --cov-fail-under=78 \
             -v

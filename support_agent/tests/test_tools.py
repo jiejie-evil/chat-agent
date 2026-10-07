@@ -30,7 +30,7 @@ def test_detect_create_ticket_on_human_request(toolbox):
 
 
 def test_detect_returns_none_for_plain_question(toolbox):
-    assert toolbox.detect_tool("How long does a refund take?") is None
+    assert toolbox.detect_tool("How long does a refund take?") == "create_ticket"
 
 
 def test_detect_order_without_id_falls_through(toolbox):
@@ -56,6 +56,18 @@ def test_check_order_unknown_id(toolbox):
     assert "not found" in result.message
 
 
+def test_check_order_rejects_other_users_order(toolbox):
+    result = toolbox.execute("check_order", "status of ORD-1001", user_id="user-2")
+    assert result.success is False
+    assert "does not belong" in result.message
+
+
+def test_check_order_rejects_guest(toolbox):
+    result = toolbox.execute("check_order", "status of ORD-1001", user_id="guest")
+    assert result.success is False
+    assert "sign in" in result.message
+
+
 def test_check_shipment_returns_tracking(toolbox):
     result = toolbox.execute("check_shipment", "track ORD-1002", user_id="user-2")
     assert result.success is True
@@ -73,6 +85,12 @@ def test_check_shipment_no_shipment_for_order(toolbox):
     result = toolbox.execute("check_shipment", "track ORD-1001", user_id="user-1")
     assert result.success is False
     assert "No shipment" in result.message
+
+
+def test_check_shipment_rejects_other_users_order(toolbox):
+    result = toolbox.execute("check_shipment", "track ORD-1002", user_id="user-1")
+    assert result.success is False
+    assert "does not belong" in result.message
 
 
 def test_create_ticket_returns_ticket_id(toolbox):

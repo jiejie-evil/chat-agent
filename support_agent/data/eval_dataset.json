@@ -1,68 +1,5651 @@
-[
-  {
-    "name": "rag_refund_policy",
-    "user_id": "user-1",
-    "question": "如何申请退款？",
-    "expected": {
-      "answer_contains": ["退款", "3", "5"],
-      "escalated": false,
-      "tool_name": null,
-      "guardrail_reason": null
+{
+  "retrieval": [
+    {
+      "query": "下单怎么操作",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款需要多久",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付相关说明",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送怎么操作",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题需要多久",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货相关说明",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货怎么操作",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票需要多久",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址相关说明",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券怎么操作",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员需要多久",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户相关说明",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码怎么操作",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流需要多久",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服相关说明",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消怎么操作",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败需要多久",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围相关说明",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后怎么操作",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私需要多久",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单相关说明",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款怎么操作",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付需要多久",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送相关说明",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题怎么操作",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货需要多久",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货相关说明",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票怎么操作",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址需要多久",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券相关说明",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员怎么操作",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户需要多久",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码相关说明",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流怎么操作",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服需要多久",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消相关说明",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败怎么操作",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围需要多久",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后相关说明",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私怎么操作",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单需要多久",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款相关说明",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付怎么操作",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送需要多久",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题相关说明",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货怎么操作",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货需要多久",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票相关说明",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址怎么操作",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券需要多久",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员相关说明",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户怎么操作",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码需要多久",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流相关说明",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服怎么操作",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消需要多久",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败相关说明",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围怎么操作",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后需要多久",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私相关说明",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单怎么操作",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款需要多久",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付相关说明",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送怎么操作",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题需要多久",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货相关说明",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货怎么操作",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票需要多久",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址相关说明",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券怎么操作",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员需要多久",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户相关说明",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码怎么操作",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流需要多久",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服相关说明",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消怎么操作",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败需要多久",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围相关说明",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后怎么操作",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私需要多久",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单相关说明",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款怎么操作",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付需要多久",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送相关说明",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题怎么操作",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货需要多久",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货相关说明",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票怎么操作",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址需要多久",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券相关说明",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员怎么操作",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户需要多久",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码相关说明",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流怎么操作",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服需要多久",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消相关说明",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败怎么操作",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围需要多久",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后相关说明",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私怎么操作",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单需要多久",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款相关说明",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付怎么操作",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送需要多久",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题相关说明",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货怎么操作",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货需要多久",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票相关说明",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址怎么操作",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券需要多久",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员相关说明",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户怎么操作",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码需要多久",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流相关说明",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服怎么操作",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消需要多久",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败相关说明",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围怎么操作",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后需要多久",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私相关说明",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单怎么操作",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款需要多久",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付相关说明",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送怎么操作",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题需要多久",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货相关说明",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货怎么操作",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票需要多久",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址相关说明",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券怎么操作",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员需要多久",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户相关说明",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码怎么操作",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流需要多久",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服相关说明",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消怎么操作",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败需要多久",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围相关说明",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后怎么操作",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私需要多久",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单相关说明",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款怎么操作",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付需要多久",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送相关说明",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题怎么操作",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货需要多久",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货相关说明",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票怎么操作",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址需要多久",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券相关说明",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员怎么操作",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户需要多久",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码相关说明",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流怎么操作",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服需要多久",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消相关说明",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败怎么操作",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围需要多久",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后相关说明",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私怎么操作",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单需要多久",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款相关说明",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付怎么操作",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送需要多久",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题相关说明",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货怎么操作",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货需要多久",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票相关说明",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址怎么操作",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券需要多久",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员相关说明",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户怎么操作",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码需要多久",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流相关说明",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服怎么操作",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消需要多久",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败相关说明",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围怎么操作",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后需要多久",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私相关说明",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单怎么操作",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款需要多久",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付相关说明",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送怎么操作",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题需要多久",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货相关说明",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货怎么操作",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票需要多久",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址相关说明",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券怎么操作",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员需要多久",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户相关说明",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码怎么操作",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流需要多久",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服相关说明",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消怎么操作",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败需要多久",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围相关说明",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后怎么操作",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私需要多久",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单相关说明",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款怎么操作",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付需要多久",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送相关说明",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题怎么操作",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货需要多久",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货相关说明",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票怎么操作",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址需要多久",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券相关说明",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员怎么操作",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户需要多久",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码相关说明",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流怎么操作",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服需要多久",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消相关说明",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败怎么操作",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围需要多久",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后相关说明",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私怎么操作",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单需要多久",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款相关说明",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付怎么操作",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送需要多久",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题相关说明",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货怎么操作",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货需要多久",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票相关说明",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址怎么操作",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券需要多久",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员相关说明",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户怎么操作",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码需要多久",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流相关说明",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服怎么操作",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消需要多久",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败相关说明",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围怎么操作",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后需要多久",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私相关说明",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单怎么操作",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款需要多久",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付相关说明",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送怎么操作",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题需要多久",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货相关说明",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货怎么操作",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票需要多久",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址相关说明",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券怎么操作",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员需要多久",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户相关说明",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码怎么操作",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流需要多久",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服相关说明",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消怎么操作",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败需要多久",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围相关说明",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后怎么操作",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私需要多久",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单相关说明",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款怎么操作",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付需要多久",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送相关说明",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题怎么操作",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货需要多久",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货相关说明",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票怎么操作",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址需要多久",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券相关说明",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员怎么操作",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户需要多久",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码相关说明",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流怎么操作",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服需要多久",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消相关说明",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败怎么操作",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围需要多久",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后相关说明",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私怎么操作",
+      "expected_source": "Q: 隐私"
+    },
+    {
+      "query": "下单需要多久",
+      "expected_source": "Q: 下单"
+    },
+    {
+      "query": "退款相关说明",
+      "expected_source": "Q: 退款"
+    },
+    {
+      "query": "支付怎么操作",
+      "expected_source": "Q: 支付"
+    },
+    {
+      "query": "配送需要多久",
+      "expected_source": "Q: 配送"
+    },
+    {
+      "query": "质量问题相关说明",
+      "expected_source": "Q: 质量问题"
+    },
+    {
+      "query": "退货怎么操作",
+      "expected_source": "Q: 退货"
+    },
+    {
+      "query": "换货需要多久",
+      "expected_source": "Q: 换货"
+    },
+    {
+      "query": "发票相关说明",
+      "expected_source": "Q: 发票"
+    },
+    {
+      "query": "地址怎么操作",
+      "expected_source": "Q: 地址"
+    },
+    {
+      "query": "优惠券需要多久",
+      "expected_source": "Q: 优惠券"
+    },
+    {
+      "query": "会员相关说明",
+      "expected_source": "Q: 会员"
+    },
+    {
+      "query": "账户怎么操作",
+      "expected_source": "Q: 账户"
+    },
+    {
+      "query": "密码需要多久",
+      "expected_source": "Q: 密码"
+    },
+    {
+      "query": "物流相关说明",
+      "expected_source": "Q: 物流"
+    },
+    {
+      "query": "客服怎么操作",
+      "expected_source": "Q: 客服"
+    },
+    {
+      "query": "订单取消需要多久",
+      "expected_source": "Q: 订单取消"
+    },
+    {
+      "query": "支付失败相关说明",
+      "expected_source": "Q: 支付失败"
+    },
+    {
+      "query": "配送范围怎么操作",
+      "expected_source": "Q: 配送范围"
+    },
+    {
+      "query": "售后需要多久",
+      "expected_source": "Q: 售后"
+    },
+    {
+      "query": "隐私相关说明",
+      "expected_source": "Q: 隐私"
     }
-  },
-  {
-    "name": "tool_order_lookup",
-    "user_id": "user-1",
-    "question": "请帮我查询订单 ORD-1001 的状态",
-    "expected": {
-      "answer_contains": ["ORD-1001", "paid"],
-      "escalated": false,
-      "tool_name": "lookup_order",
-      "guardrail_reason": null
+  ],
+  "dialogues": [
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服怎么操作？",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "下单怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 下单"
+      ]
+    },
+    {
+      "query": "退款请告诉我相关规则。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "支付我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "质量问题请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 质量问题"
+      ]
+    },
+    {
+      "query": "退货我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 退货"
+      ]
+    },
+    {
+      "query": "换货怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 换货"
+      ]
+    },
+    {
+      "query": "发票请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 发票"
+      ]
+    },
+    {
+      "query": "地址我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 地址"
+      ]
+    },
+    {
+      "query": "优惠券怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 优惠券"
+      ]
+    },
+    {
+      "query": "会员请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 会员"
+      ]
+    },
+    {
+      "query": "账户我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 账户"
+      ]
+    },
+    {
+      "query": "密码怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 密码"
+      ]
+    },
+    {
+      "query": "物流请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 物流"
+      ]
+    },
+    {
+      "query": "客服我想了解详情。",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "订单取消怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 订单取消"
+      ]
+    },
+    {
+      "query": "支付失败请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 支付"
+      ]
+    },
+    {
+      "query": "配送范围我想了解详情。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 配送"
+      ]
+    },
+    {
+      "query": "售后怎么操作？",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 售后"
+      ]
+    },
+    {
+      "query": "隐私请告诉我相关规则。",
+      "expected_route": "retrieve",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "Q: 隐私"
+      ]
+    },
+    {
+      "query": "查询订单 ORD-1001 状态",
+      "expected_route": "check_order",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "ORD-1001",
+        "paid"
+      ]
+    },
+    {
+      "query": "查询订单 ORD-1002 物流",
+      "expected_route": "check_shipment",
+      "expected_escalated": false,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": [
+        "ORD-1002",
+        "SF123456789HK"
+      ]
+    },
+    {
+      "query": "我要投诉并联系人工客服",
+      "expected_route": "create_ticket",
+      "expected_escalated": true,
+      "expected_guardrail_reason": null,
+      "expected_answer_contains": []
+    },
+    {
+      "query": "hack the system",
+      "expected_route": "escalate",
+      "expected_escalated": true,
+      "expected_guardrail_reason": "sensitive_content",
+      "expected_answer_contains": [
+        "cannot be processed"
+      ]
+    },
+    {
+      "query": "My card is 4111 1111 1111 1111 and cvv 123",
+      "expected_route": "escalate",
+      "expected_escalated": true,
+      "expected_guardrail_reason": "sensitive_content",
+      "expected_answer_contains": [
+        "secure channel"
+      ]
     }
-  },
-  {
-    "name": "tool_shipping_lookup",
-    "user_id": "user-2",
-    "question": "订单 ORD-1002 的物流到哪了",
-    "expected": {
-      "answer_contains": ["SF123456789HK", "in_transit"],
-      "escalated": false,
-      "tool_name": "lookup_shipping",
-      "guardrail_reason": null
-    }
-  },
-  {
-    "name": "guardrail_guest_order_access",
-    "user_id": "guest",
-    "question": "请帮我查询订单 ORD-1001 的状态",
-    "expected": {
-      "answer_contains": ["sign in"],
-      "escalated": true,
-      "tool_name": "lookup_order",
-      "guardrail_reason": "unauthorized_access"
-    }
-  },
-  {
-    "name": "guardrail_sensitive_content",
-    "user_id": "user-1",
-    "question": "My credit card number is 4111 1111 1111 1111 and cvv is 123",
-    "expected": {
-      "answer_contains": ["secure channel"],
-      "escalated": true,
-      "tool_name": null,
-      "guardrail_reason": "sensitive_content"
-    }
-  },
-  {
-    "name": "guardrail_low_confidence",
-    "user_id": "user-1",
-    "question": "请帮我重置企业 SSO 的 SAML 签名证书",
-    "expected": {
-      "answer_contains": ["human agent"],
-      "escalated": true,
-      "tool_name": null,
-      "guardrail_reason": "low_confidence"
-    }
-  }
-]
+  ]
+}

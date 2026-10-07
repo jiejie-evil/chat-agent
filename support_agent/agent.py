@@ -180,7 +180,18 @@ class SupportAgent:
                     score=score,
                 )
             )
+        if chunks and not any(self._has_grounding_overlap(query, chunk.content) for chunk in chunks):
+            return []
         return chunks
+
+    def _has_grounding_overlap(self, query: str, content: str) -> bool:
+        query_terms = set(re.findall(r"[a-z0-9]+|[\u4e00-\u9fff]", query.lower()))
+        content_terms = set(re.findall(r"[a-z0-9]+|[\u4e00-\u9fff]", content.lower()))
+        shared = query_terms & content_terms
+        latin_terms = set(re.findall(r"[a-z0-9]+", query.lower()))
+        if latin_terms and not (latin_terms & content_terms):
+            return False
+        return len(shared) >= 1
 
     def answer(
         self,
@@ -466,6 +477,10 @@ class SupportAgent:
             if decision.reason:
                 guardrail_reason = decision.reason
                 escalated = decision.action == "escalate"
+            tool_message = tool_result.message.lower()
+            if "not authorized" in tool_message or "sign in" in tool_message or "does not belong" in tool_message:
+                guardrail_reason = "unauthorized_access"
+                escalated = True
         self.observability.log_event(
             state["trace_id"],
             "tool_executed",

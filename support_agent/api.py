@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from support_agent.agent import SupportAgent
 from support_agent.auth import AuthContext, authenticate_api_key
@@ -93,6 +93,7 @@ async def service_error_handler(_: Request, exc: ServiceError) -> JSONResponse:
 
 
 class AskRequest(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
     question: str
     user_id: str = "guest"
     session_id: Optional[str] = None
@@ -110,19 +111,34 @@ class AskResponse(BaseModel):
 
 
 class TicketRequest(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
     user_id: str
-    message: str
+    message: str = Field(min_length=1, max_length=4000)
     session_id: Optional[str] = None
 
 
 class TicketStatusRequest(BaseModel):
-    status: str
+    status: str = Field(min_length=1)
 
 
 class UserUpsertRequest(BaseModel):
     display_name: Optional[str] = None
     email: Optional[str] = None
     tier: Optional[str] = None
+
+    @field_validator("tier")
+    @classmethod
+    def validate_tier(cls, value: Optional[str]) -> Optional[str]:
+        if value is not None and value not in {"standard", "vip"}:
+            raise ValueError("tier must be standard or vip")
+        return value
+
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, value: Optional[str]) -> Optional[str]:
+        if value is not None and ("@" not in value or "." not in value.rsplit("@", 1)[-1]):
+            raise ValueError("email must be valid")
+        return value
 
 
 def _validate_user_id(user_id: str) -> None:
@@ -136,9 +152,28 @@ def _validate_user_id(user_id: str) -> None:
         )
 
 
+def _validate_limit(limit: int) -> None:
+    if limit < 1 or limit > 100:
+        raise HTTPException(status_code=400, detail="limit must be between 1 and 100")
+
+
+def _validate_ticket_filter(status: Optional[str]) -> None:
+    if status is not None and status not in {"open", "pending", "closed"}:
+        raise HTTPException(status_code=400, detail="status must be open, pending, or closed")
+
+
+def _resource_user_id(resource: dict) -> str:
+    return str(resource.get("user_id", ""))
+
+
+def _require_resource_owner(resource: dict, requested_user_id: Optional[str], auth: AuthContext) -> None:
+    if requested_user_id and _resource_user_id(resource) != requested_user_id:
+        raise HTTPException(status_code=404, detail="resource not found")
+
+
 def _authenticate_request(x_api_key: Optional[str]) -> AuthContext:
     try:
-        auth = authenticate_api_key(x_api_key, settings)
+        auth = authenticate_api_key(x_api_key, get_settings())
         log_event(
             {
                 "trace_id": None,
@@ -287,7 +322,8 @@ async def stream_answer_question(
                     )
                     if token is _STREAM_DONE:
                         break
-                    yield f"data: {token}\n\n"
+                    lines = str(token).splitlines() or [""]
+                    yield "".join(f"data: {line}\n" for line in lines) + "\n"
             finally:
                 gen.close()
         yield "data: [DONE]\n\n"
@@ -321,6 +357,7 @@ def list_tickets(
     x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
 ) -> dict:
     auth = _authenticate_request(x_api_key)
+    _validate_ticket_filter(status)
     request.state.auth_subject = auth.subject
     if user_id is not None:
         _validate_user_id(user_id)
@@ -333,12 +370,15 @@ def list_tickets(
 def get_ticket(
     ticket_id: int,
     request: Request,
+    user_id: Optional[str] = None,
     x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
 ) -> dict:
     auth = _authenticate_request(x_api_key)
     request.state.auth_subject = auth.subject
     try:
-        return state_store.get_ticket(ticket_id)
+        ticket = state_store.get_ticket(ticket_id)
+        _require_resource_owner(ticket, user_id, auth)
+        return ticket
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
@@ -348,11 +388,15 @@ def update_ticket(
     ticket_id: int,
     payload: TicketStatusRequest,
     request: Request,
+    user_id: Optional[str] = None,
     x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
 ) -> dict:
     auth = _authenticate_request(x_api_key)
+    _validate_ticket_filter(payload.status)
     request.state.auth_subject = auth.subject
     try:
+        ticket = state_store.get_ticket(ticket_id)
+        _require_resource_owner(ticket, user_id, auth)
         return state_store.update_ticket_status(ticket_id, payload.status)
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
@@ -376,12 +420,15 @@ def list_sessions(
 def get_session(
     session_id: str,
     request: Request,
+    user_id: Optional[str] = None,
     x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
 ) -> dict:
     auth = _authenticate_request(x_api_key)
     request.state.auth_subject = auth.subject
     try:
-        return state_store.get_session(session_id)
+        session = state_store.get_session(session_id)
+        _require_resource_owner(session, user_id, auth)
+        return session
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
@@ -395,6 +442,7 @@ def list_traces(
     x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
 ) -> dict:
     auth = _authenticate_request(x_api_key)
+    _validate_limit(limit)
     request.state.auth_subject = auth.subject
     if user_id is not None:
         _validate_user_id(user_id)
@@ -406,12 +454,15 @@ def list_traces(
 def get_trace(
     trace_id: str,
     request: Request,
+    user_id: Optional[str] = None,
     x_api_key: Optional[str] = Header(default=None, alias="X-API-Key"),
 ) -> dict:
     auth = _authenticate_request(x_api_key)
     request.state.auth_subject = auth.subject
     try:
-        return state_store.get_trace(trace_id)
+        trace = state_store.get_trace(trace_id)
+        _require_resource_owner(trace, user_id, auth)
+        return trace
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 

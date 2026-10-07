@@ -67,7 +67,7 @@ def get_settings() -> Settings:
             os.getenv("SUPPORT_AGENT_OPENAI_MAX_RETRIES", "2")
         ),
         support_agent_rate_limit_requests=int(
-            os.getenv("SUPPORT_AGENT_RATE_LIMIT_REQUESTS", "20")
+            os.getenv("SUPPORT_AGENT_RATE_LIMIT_REQUESTS", "10")
         ),
         support_agent_rate_limit_window_seconds=int(
             os.getenv("SUPPORT_AGENT_RATE_LIMIT_WINDOW_SECONDS", "60")

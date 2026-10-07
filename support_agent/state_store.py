@@ -407,6 +407,8 @@ class StateStore:
             )
 
     def update_ticket_status(self, ticket_id: int, status: str) -> Dict[str, Any]:
+        if status not in {"open", "pending", "closed"}:
+            raise ValueError("status must be one of: closed, open, pending")
         with self._connect() as connection:
             cursor = connection.execute(
                 """
