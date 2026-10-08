@@ -73,12 +73,14 @@ class SupportAgent:
         min_score: float = 0.12,
         state_store: Optional[StateStore] = None,
         human_interface: Optional[HumanAgentInterface] = None,
+        chroma_persist_dir: Optional[str] = None,
     ):
         self.settings = get_settings()
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         self.top_k = top_k
         self.min_score = min_score
+        self.chroma_persist_dir = chroma_persist_dir or self.settings.chroma_persist_dir
         self.chunks: List[RetrievedChunk] = []
         self._embedder = None
         self._collection = None
@@ -105,7 +107,7 @@ class SupportAgent:
         import chromadb
 
         embedder = self._ensure_embedder()
-        client = chromadb.PersistentClient(path=self.settings.chroma_persist_dir)
+        client = chromadb.PersistentClient(path=self.chroma_persist_dir)
         try:
             client.delete_collection("knowledge")
         except Exception:
